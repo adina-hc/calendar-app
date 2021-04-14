@@ -20,19 +20,19 @@ var newP = $('<p>').text(time).attr('class', 'col-1 hour');
 
 // Compare elements in workTime to the current hour to determine background color
 if(i+9 < currentHour){
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past');
 } else if (i+9 == currentHour){
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present');
 } else {
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future');
 }
 
-newTa.val(localStorage.getItem(time))
+newTsk.val(localStorage.getItem(time))
 var newBtn = $('<button>').html('save <i class="bi bi-archive"></i>').attr('class', 'col-1 saveBtn').on("click", saveToLocal);
 
 // Populate rows
 newRow.append(newP);
-newRow.append(newTa);
+newRow.append(newTsk);
 newRow.append(newBtn);
 
 // Attach the image to the button
@@ -49,17 +49,6 @@ function saveToLocal (e) {
     var keyFromSave = $(this).prev().prev().text()
     localStorage.setItem(keyFromSave, valueToSave)
 }
-
-
-
-// Main section format
-//$('main').css("background-color:")
-
-
-// Table for time, task, save
-
-
-
 
 
 
