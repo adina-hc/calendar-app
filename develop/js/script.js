@@ -10,31 +10,35 @@ $('document').ready(function () {
 // Current date
 $('#currentDay').text(currentTime);
 
-// Creation of rows
+// Loop for row creation
 for (var i = 0; i < workTime.length; i++) {
-var time =workTime[i];
+var time = workTime[i];
 
-//Variables
+// Variables to create the elements to populate the rows
 var newRow = $('<div>').attr('class','row');
 var newP = $('<p>').text(time).attr('class', 'col-1 hour');
 
-// to compare elements in workTime to the current hour
+// Compare elements in workTime to the current hour to determine background color
 if(i+9 < currentHour){
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-5 past');
+    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past');
 } else if (i+9 == currentHour){
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-5 present');
+    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present');
 } else {
-    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-5 future');
+    var newTa = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future');
 }
 
 newTa.val(localStorage.getItem(time))
 var newBtn = $('<button>').html('save <i class="bi bi-archive"></i>').attr('class', 'col-1 saveBtn').on("click", saveToLocal);
 
-//Create rows
+// Populate rows
 newRow.append(newP);
 newRow.append(newTa);
 newRow.append(newBtn);
 
+// Attach the image to the button
+
+
+// 
 $('.time-block').append(newRow);
 
 } 
