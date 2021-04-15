@@ -3,7 +3,7 @@ var currentDay = moment().format('dddd');
 var currentTime = moment().format('MMMM Do YYYY');
 var currentHour = moment().format('HH')
 var pastTime = moment().startOf('hour').fromNow();
-var workTime = ['9am','10am', '11am', '12pm', '1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
+var workTime = ['9am','10am', '11am', '12pm', '1pm','2pm','3pm','4pm','5pm'];
 var imgSave = "./assets/archive.svg";
 
 // When document loads
@@ -23,11 +23,11 @@ var newP = $('<p>').text(time).attr('class', 'col-1 hour');
 
 // Compare elements in workTime to the current hour to determine background color
 if(i+9 < currentHour){
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past description');
+    var newTsk = $('<textarea>').attr('placeholder','').attr('class', 'col-10 past description');
 } else if (i+9 == currentHour){
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present description');
+    var newTsk = $('<textarea>').attr('placeholder','').attr('class', 'col-10 present description');
 } else {
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future description');
+    var newTsk = $('<textarea>').attr('placeholder','').attr('class', 'col-10 future description');
 }
 
 newTsk.val(localStorage.getItem(time))
