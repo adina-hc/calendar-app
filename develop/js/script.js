@@ -1,14 +1,17 @@
 // Time from 'moment' to create variables to store time
-var currentTime = moment().format('MMM Do YY');
+var currentDay = moment().format('dddd');
+var currentTime = moment().format('MMMM Do YYYY');
 var currentHour = moment().format('HH')
 var pastTime = moment().startOf('hour').fromNow();
 var workTime = ['9am','10am', '11am', '12pm', '1pm','2pm','3pm','4pm','5pm','6pm','7pm','8pm','9pm'];
+var imgSave = "./assets/archive.svg";
 
 // When document loads
 $('document').ready(function () {
 
 // Current date
-$('#currentDay').text(currentTime);
+var nowT = currentDay + ", " + currentTime;
+$('#currentDay').text(nowT);
 
 // Loop for row creation
 for (var i = 0; i < workTime.length; i++) {
@@ -20,15 +23,15 @@ var newP = $('<p>').text(time).attr('class', 'col-1 hour');
 
 // Compare elements in workTime to the current hour to determine background color
 if(i+9 < currentHour){
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 past description');
 } else if (i+9 == currentHour){
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 present description');
 } else {
-    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future');
+    var newTsk = $('<textarea>').attr('placeholder','Enter task here: ').attr('class', 'col-10 future description');
 }
 
 newTsk.val(localStorage.getItem(time))
-var newBtn = $('<button>').html('save <i class="bi bi-archive"></i>').attr('class', 'col-1 saveBtn').on("click", saveToLocal);
+var newBtn = $('<button>').html('<i class="bi bi-archive"></i>').attr('class', 'col-1 saveBtn far fa-save imgSave').on("click", saveToLocal);
 
 // Populate rows
 newRow.append(newP);
@@ -49,8 +52,6 @@ function saveToLocal (e) {
     var keyFromSave = $(this).prev().prev().text()
     localStorage.setItem(keyFromSave, valueToSave)
 }
-
-
 
 }); //end of document readiness
 
