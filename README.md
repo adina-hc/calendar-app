@@ -1,4 +1,4 @@
-# 05-calendar-app
+# calendar-app
 
 ## Calendar Application
 
